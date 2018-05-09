@@ -8,7 +8,7 @@ Please refer to [Keras documentation](https://keras.io/preprocessing/image/#imag
 Setting ```class_mode=None```, it returns a tensor of (image, label). 
 1. Initialize paths where images flow from.
 
-```
+```Python
 from keras.preprocessing.image import ImageDataGenerator
 
 batch_size = 1
@@ -25,7 +25,7 @@ val_X_path = os.path.join('camvid', 'val')
 val_Y_path = os.path.join('camvid', 'valannot')
 
 # Note: All paths must contain the following structure:
-Example:
+#Example:
 # camvid/train/images/image1.jpg ->(extension can be {'png', 'jpg', 'jpeg', 'bmp', 'ppm'})
 # camvid/train/images/image2.jpg 
 # camvid/train/images/...
@@ -33,7 +33,7 @@ Example:
 ```
 2. Create ```train_datagen``` and ```val_datagen``` objects:
 
-```
+```Python
 train_datagen = ImageDataGenerator(
         #shear_range=0.2,
         #zoom_range=0.5,
@@ -55,7 +55,7 @@ val_datagen = ImageDataGenerator(
 
 3. Flow images with corresponding ground-truth labels from given directory: 
 
-```
+```Python
 train_flow = train_datagen.flow_from_directory(
         X_path, Y_path,
         target_size=(h, w),
@@ -78,8 +78,10 @@ val_flow = val_datagen.flow_from_directory(
         class_mode=None
         )
 ```
+
 4. Fit the generator:
-```
+
+```Python
 
 model.fit_generator(train_flow,
                     steps_per_epoch = len(train_flow)/batch_size, 
